@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarakan VPN - Быстрый и безопасный VPN</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header с премиум кнопкой -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo-icon">🪳</div>
+                <h1 class="logo-text">Tarakan VPN</h1>
+            </div>
+            <button class="premium-btn" id="premiumBtn">Go Premium</button>
+        </header>
+
+        <!-- Поиск страны -->
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search for country or city">
+                <span class="search-icon">🔍</span>
+            </div>
+        </div>
+
+        <!-- Optimal location (как на фото) -->
+        <div class="location-section">
+            <h2 class="section-title">Optimal location:</h2>
+            <div class="location-card optimal" id="optimalLocation">
+                <div class="flag-container">
+                    <img src="https://flagcdn.com/w320/it.png" alt="Italy" class="country-flag">
+                </div>
+                <div class="location-info">
+                    <span class="country-name">Italy</span>
+                    <span class="city-name">Milan</span>
+                </div>
+                <div class="ping-badge">15 ms</div>
+            </div>
+        </div>
+
+        <!-- Бесплатный пробный период -->
+        <div class="trial-section">
+            <button class="trial-btn" id="trialBtn">Start your free 7 day trial</button>
+            <p class="trial-note">Go Pro to Unlock all locations</p>
+        </div>
+
+        <!-- Optimal location (повтор как на фото) -->
+        <div class="location-section">
+            <h2 class="section-title">Optimal location</h2>
+            <div class="location-card optimal">
+                <div class="flag-container">
+                    <img src="https://flagcdn.com/w320/it.png" alt="Italy" class="country-flag">
+                </div>
+                <div class="location-info">
+                    <span class="country-name">Italy</span>
+                    <span class="city-name">Milan</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommended locations -->
+        <div class="location-section">
+            <h2 class="section-title">Recommended locations:</h2>
+            <div class="locations-grid">
+                <div class="location-card recommended" data-country="usa">
+                    <div class="flag-container">
+                        <img src="https://flagcdn.com/w320/us.png" alt="USA" class="country-flag">
+                    </div>
+                    <div class="location-info">
+                        <span class="country-name">USA</span>
+                        <span class="city-name">New York</span>
+                    </div>
+                </div>
+                <div class="location-card recommended" data-country="canada">
+                    <div class="flag-container">
+                        <img src="https://flagcdn.com/w320/ca.png" alt="Canada" class="country-flag">
+                    </div>
+                    <div class="location-info">
+                        <span class="country-name">Canada</span>
+                    </div>
+                    <span class="or-divider">Or</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Select location -->
+        <div class="location-section">
+            <h2 class="section-title">Select location</h2>
+            <div class="locations-list">
+                <div class="location-item" data-country="france">
+                    <div class="flag-container small">
+                        <img src="https://flagcdn.com/w320/fr.png" alt="France" class="country-flag">
+                    </div>
+                    <span class="country-name">France</span>
+                    <span class="free-badge">Free</span>
+                </div>
+                <div class="location-item" data-country="usa-ny">
+                    <div class="flag-container small">
+                        <img src="https://flagcdn.com/w320/us.png" alt="USA" class="country-flag">
+                    </div>
+                    <span class="country-name">USA - New York</span>
+                    <span class="premium-badge">Premium</span>
+                </div>
+                <div class="location-item" data-country="uk">
+                    <div class="flag-container small">
+                        <img src="https://flagcdn.com/w320/gb.png" alt="United Kingdom" class="country-flag">
+                    </div>
+                    <span class="country-name">United Kingdom</span>
+                    <span class="premium-badge">Premium</span>
+                </div>
+                <div class="location-item" data-country="germany">
+                    <div class="flag-container small">
+                        <img src="https://flagcdn.com/w320/de.png" alt="Germany" class="country-flag">
+                    </div>
+                    <span class="country-name">Germany</span>
+                    <span class="free-badge">Free</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Безопасность -->
+        <div class="security-section">
+            <div class="security-badge">
+                <span class="lock-icon">🔒</span>
+                <span class="security-text">Best-in-class AES256-bit encryption</span>
+            </div>
+        </div>
+
+        <!-- Кнопка подключения и статус -->
+        <div class="connection-section">
+            <div class="status-container">
+                <span class="status-indicator" id="statusIndicator"></span>
+                <span class="status-text" id="statusText">Отключено</span>
+            </div>
+            <button class="connect-btn" id="connectBtn">Подключиться</button>
+        </div>
+
+        <!-- Модальное окно для ввода ключа -->
+        <div class="modal" id="keyModal">
+            <div class="modal-content">
+                <span class="close-modal" id="closeModal">&times;</span>
+                <h3>Введите ключ VPN</h3>
+                <input type="text" class="key-input" id="vpnKey" placeholder="XXXXX-XXXXX-XXXXX">
+                <button class="activate-btn" id="activateKey">Активировать</button>
+            </div>
+        </div>
+
+        <!-- Модальное окно Premium -->
+        <div class="modal" id="premiumModal">
+            <div class="modal-content">
+                <span class="close-modal" id="closePremium">&times;</span>
+                <h3>Tarakan VPN Premium</h3>
+                <p>Все 25+ стран без ограничений</p>
+                <div class="countries-preview">
+                    <span>🇺🇸 USA</span> <span>🇬🇧 UK</span> <span>🇨🇦 Canada</span>
+                    <span>🇩🇪 Germany</span> <span>🇫🇷 France</span> <span>🇯🇵 Japan</span>
+                    <span>🇦🇺 Australia</span> <span>🇳🇱 Netherlands</span> <span>🇸🇬 Singapore</span>
+                </div>
+                <button class="buy-premium-btn" id="buyPremium">Купить Premium - $9.99/мес</button>
+                <p class="key-note">Уже есть ключ? <span class="key-link" id="openKeyModal">Ввести ключ</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="vpn.js"></script>
+</body>
+</html>
